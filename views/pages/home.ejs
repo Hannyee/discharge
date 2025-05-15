@@ -215,7 +215,24 @@
 .allergy-card {
     border-top: 5px solid #9cdc2675;
 }
-
+.deepveinthrombosis-card {
+    border-top: 5px solid #26d6dc57;
+}
+.diabetes-card {
+    border-top: 5px solid #be26dc57;
+}
+.giddiness-card {
+    border-top: 5px solid #143a3b2a;
+}
+.gastroenteritis-card {
+    border-top: 5px solid #ff170f57;
+}
+.headinjury-card {
+    border-top: 5px solid #26dc5157;
+}
+.hypertension-card {
+    border-top: 5px solid #fff82355;
+}
         .card-content {
             padding: 1.5rem;
         }
@@ -412,6 +429,10 @@
                 <button class="category-btn" onclick="filterAdvice('hypertension')">Hypertension</button>
                 </div>
                 <div class="category-icon">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7J_5WhOhECqZPdz6TtGP_FZqpl0bDiEhb4Q&s" alt="Wound Care">
+                <button class="category-btn" onclick="filterAdvice('woundcare')">Wound Care</button>
+                </div>
+                <div class="category-icon">
                     <img src="data:image/png;base64,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" alt="All Icon">
                 <button class="category-btn" onclick="filterAdvice('wound')">All</button>
             </div>
@@ -499,6 +520,54 @@
         <h3>Chest Pain Advice</h3>
         <p>xxx</p>
         <a href="https://www.healthhub.sg/a-z/diseases-and-conditions/719/headaches" target="_blank">Chest Pain Advice</a>
+    </div>
+</div>
+
+<div class="card deepveinthrombosis-card" data-category="deepveinthrombosis">
+    <div class="card-content">
+        <h3>Deep Vein Thrombosis Advice</h3>
+        <p>xxx</p>
+        <a href="https://www.healthhub.sg/a-z/diseases-and-conditions/719/headaches" target="_blank">Deep Vein Thrombosis Advice</a>
+    </div>
+</div>
+
+<div class="card diabetes-card" data-category="diabetes">
+    <div class="card-content">
+        <h3>Diabetes Advice</h3>
+        <p>xxx</p>
+        <a href="https://www.healthhub.sg/a-z/diseases-and-conditions/719/headaches" target="_blank">Diabetes Advice</a>
+    </div>
+</div>
+
+<div class="card gastroenteritis-card" data-category="gastroenteritis">
+    <div class="card-content">
+        <h3>Gastroenteritis Advice</h3>
+        <p>xxx</p>
+        <a href="https://www.healthhub.sg/a-z/diseases-and-conditions/719/headaches" target="_blank">Gastroenteritis Advice</a>
+    </div>
+</div>
+
+<div class="card giddiness-card" data-category="giddiness">
+    <div class="card-content">
+        <h3>Giddiness Advice</h3>
+        <p>xxx</p>
+        <a href="https://www.healthhub.sg/a-z/diseases-and-conditions/719/headaches" target="_blank">Giddiness Advice</a>
+    </div>
+</div>
+
+<div class="card headinjury-card" data-category="headinjury">
+    <div class="card-content">
+        <h3>Head Injury Advice</h3>
+        <p>xxx</p>
+        <a href="https://www.healthhub.sg/a-z/diseases-and-conditions/719/headaches" target="_blank">Head Injury Advice</a>
+    </div>
+</div>
+
+<div class="card hypertension-card" data-category="hypertensioninjury">
+    <div class="card-content">
+        <h3>Hypertension Advice</h3>
+        <p>xxx</p>
+        <a href="https://www.healthhub.sg/a-z/diseases-and-conditions/719/headaches" target="_blank">Hypertension Advice</a>
     </div>
 </div>
 

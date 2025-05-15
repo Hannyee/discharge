@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discharge Advice</title>
@@ -156,6 +157,47 @@
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
+        }
+        
+
+        .scanner-section {
+            background-color: rgba(234, 241, 14, 0.182);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .scanner-section h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .scanner-container {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        #qr-video {
+            width: 100%;
+            border-radius: 8px;
+            border: 2px solid var(--border);
+        }
+        
+        .scan-btn {
+            margin-top: 1rem;
+            background-color: var(--primary);
+            color: rgba(199, 144, 6, 0.706);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .scan-btn:hover {
+            background-color: var(--primary-dark);
         }
         
         #advice-container {
@@ -449,6 +491,36 @@
                 <button onclick="searchAdvice()">Search</button>
             </div>
         </div>
+
+         <section class="container" id="scanner">
+        <div class="scanner-section">
+            <h2>Scan QR Code</h2>
+            <p>Scan the QR code provided in your discharge papers to quickly access your personalized advice.</p>
+            
+            <div class="scanner-container">
+                <video id="qr-video" autoplay playsinline hidden></video>
+                <canvas id="qr-canvas" hidden></canvas>
+                <div id="camera-container"></div>
+                <button id="start-scan" class="scan-btn">Start QR Scanner</button>
+            </div>
+        </div>
+    </section>
+    
+    
+    <div id="scan-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">QR Code Result</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="scan-result"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="scan-btn" id="close-modal-btn">Close</button>
+            </div>
+        </div>
+    </div>
         
         <div id="advice-container">
             <div class="card wound-card" data-category="wound">
@@ -662,4 +734,153 @@
         noResultsElement.style.display = 'none';
     }
 }
+// QR Code scanner functionality
+            const startScanButton = document.getElementById('start-scan');
+            const scanModal = document.getElementById('scan-modal');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const closeModalX = document.querySelector('.close-modal');
+            const scanResult = document.getElementById('scan-result');
+            const cameraContainer = document.getElementById('camera-container');
+            
+            let html5QrCode;
+            
+            startScanButton.addEventListener('click', function() {
+                // Initialize QR scanner if not already initialized
+                if (!html5QrCode) {
+                    html5QrCode = new Html5Qrcode("camera-container");
+                }
+                
+                const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+                    // Stop scanning
+                    html5QrCode.stop().then(() => {
+                        console.log('QR Code scanning stopped.');
+                    }).catch((err) => {
+                        console.error('Failed to stop QR Code scanning:', err);
+                    });
+                    
+                    // Display result in modal
+                    scanResult.textContent = decodedText;
+                    scanModal.style.display = 'flex';
+                    
+                    // If QR code contains a valid URL, add a link
+                    if (decodedText.startsWith('http')) {
+                        const link = document.createElement('a');
+                        link.href = decodedText;
+                        link.target = '_blank';
+                        link.textContent = 'Open Link';
+                        link.style.display = 'block';
+                        link.style.marginTop = '1rem';
+                        link.style.color = '#4F46E5';
+                        link.style.textDecoration = 'none';
+                        link.style.fontWeight = '500';
+                        
+                        scanResult.appendChild(link);
+                    }
+
+                    // Highlight matching advice card if ID is found
+                    if (decodedText.includes('id:')) {
+                        const adviceId = decodedText.split('id:')[1].trim();
+                        
+                        // Find matching category from data-category attribute
+                        const adviceItems = document.querySelectorAll('#advice-container > .card');
+                        adviceItems.forEach(item => {
+                            const category = item.getAttribute('data-category');
+                            if (category === adviceId) {
+                                // Scroll to the item
+                                item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                
+                                // Add highlight effect
+                                item.style.boxShadow = '0 0 0 2px #4F46E5';
+                                
+                                // Remove highlight after a few seconds
+                                setTimeout(() => {
+                                    item.style.boxShadow = '';
+                                }, 3000);
+                            }
+                        });
+                    }
+                };
+                
+                const qrCodeErrorCallback = (error) => {
+                    console.warn(`QR Code scanning error: ${error}`);
+                };
+                
+                // Start scanning
+                html5QrCode.start(
+                    { facingMode: "environment" },
+                    { fps: 10, qrbox: { width: 250, height: 250 } },
+                    qrCodeSuccessCallback,
+                    qrCodeErrorCallback
+                ).catch((err) => {
+                    console.error("Error starting QR scanner:", err);
+                    alert("Unable to start camera. Please ensure camera permissions are enabled.");
+                });
+                
+                // Change button text
+                startScanButton.textContent = "Scanning...";
+                startScanButton.disabled = true;
+            });
+            
+            // Modal close functionality
+            closeModalBtn.addEventListener('click', function() {
+                scanModal.style.display = 'none';
+                // Reset the scanner
+                startScanButton.textContent = "Start QR Scanner";
+                startScanButton.disabled = false;
+                scanResult.innerHTML = "";
+            });
+            
+            closeModalX.addEventListener('click', function() {
+                scanModal.style.display = 'none';
+                // Reset the scanner
+                startScanButton.textContent = "Start QR Scanner";
+                startScanButton.disabled = false;
+                scanResult.innerHTML = "";
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target === scanModal) {
+                    scanModal.style.display = 'none';
+                    // Reset the scanner
+                    startScanButton.textContent = "Start QR Scanner";
+                    startScanButton.disabled = false;
+                    scanResult.innerHTML = "";
+                }
+            });
+        });
+
+  // Filter functionality
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    const adviceItems = document.querySelectorAll('#advice-container > .card');
+                    
+                    adviceItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                    
+                    // Clear search input when filtering
+                    document.getElementById('search-input').value = '';
+                    
+                    // Hide no results message if it exists
+                    const noResultsElement = document.getElementById('no-results');
+                    if (noResultsElement) {
+                        noResultsElement.style.display = 'none';
+                    }
+                });
+            });
+
 </script> 

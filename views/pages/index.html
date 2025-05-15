@@ -158,6 +158,7 @@
             font-weight: 600;
         }
         
+
         #advice-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -178,9 +179,6 @@
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
         }
         
-        .abdominalpain-card {
-            border-top: 5px solid #EF4444;
-        }
         
         .wound-card {
             border-top: 5px solid #EF4444;
@@ -392,15 +390,6 @@
                 <button onclick="searchAdvice()">Search</button>
             </div>
         </div>
-        
-        <div id="advice-container">
-            <div class="card abdominalpain-card" data-category="abdominalpain">
-                <div class="card-content">
-                    <h3>Abdominal Pain</h3>
-                    <p>xxx</p>
-                    <a href="https://www.ktph.com.sg/health-library/view?healthID=397" target="_blank">More about Abdominal Pain</a>
-                </div>
-            </div>
             
             <div class="card wound-card" data-category="wound">
                 <div class="card-content">
@@ -464,6 +453,7 @@
     <footer>
         <p>© 2025 Discharge Advice System. For medical emergencies, please call 995 or visit the nearest Emergency Department.</p>
     </footer>
+    
     
     <script>
         function filterAdvice(category) {

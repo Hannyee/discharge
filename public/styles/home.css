@@ -379,4 +379,20 @@ footer {
     .search-bar {
         flex-direction: column;
     }
+}
+
+/* Styles for enlarged cards */
+.card.enlarged {
+    grid-column: 1 / -1;
+    transform: scale(1.02);
+    z-index: 1;
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Active button state */
+.category-btn.active {
+    background-color: #f452359b;
+    color: white;
+    transform: translateY(-2px);
 } 

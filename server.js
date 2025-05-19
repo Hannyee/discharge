@@ -10,7 +10,7 @@ app.use(express.static(__dirname + '/public'));
 
 // Main landing page
 app.get('/', function(req, res) {
-    res.render('pages/home');
+    res.render('pages/index');
 });
 
 // Tells the app which port to run on

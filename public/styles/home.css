@@ -175,7 +175,6 @@ nav {
 }
 
 .card {
-    background-color: white;
     background-color: #fff8e7;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -396,4 +395,22 @@ footer {
     background-color: #f452359b;
     color: white;
     transform: translateY(-2px);
+}
+
+/* HealthHub link styling */
+.healthhub-link {
+    display: inline-block;
+    background-color: #f452359b;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 1rem;
+    transition: background-color 0.2s;
+}
+
+.healthhub-link:hover {
+    background-color: #f45235;
+    text-decoration: none;
 } 

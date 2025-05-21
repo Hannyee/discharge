@@ -188,7 +188,7 @@ nav {
 }
 
 .wound-card {
-    border-top: 5px solid #ef44446d;
+    border-top: 5px solid #44ef666d;
 }
 
 .fever-card {
@@ -233,8 +233,8 @@ nav {
 .giddiness-card {
     border-top: 5px solid #143a3b2a;
 }
-gastroenteritis-card {
-    border-top: 5px solid #ff170f57;
+.gastroenteritis-card {
+    border-top: 5px solid #ff170f77;
 }
 .headinjury-card {
     border-top: 5px solid #26dc5157;

@@ -10,6 +10,11 @@
         <p>Access organised important medical advice and care instructions following your hospital visit</p>
        <div class="date-badge">ENGLISH</div>
     </header>
+    
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script> 
+
     <main>
         <%- include('../partials/navbar') %>
         <div class="search-container">
@@ -20,8 +25,26 @@
             </div>
         </div>
         <%- include('../partials/advice-cards') %>
+         <div class="qr-container">
+            <h2>Access on Mobile</h2>
+            <p>Scan this QR code to access this page on your mobile device</p>
+            <div id="qrcode"></div>
+        </div>
     </main>
     <script src="/js/filterAdvice.js"></script>
+     <script>
+        // Generate QR code
+        document.addEventListener('DOMContentLoaded', function() {
+            const qrcode = new QRCode(document.getElementById("qrcode"), {
+                text: window.location.href,
+                width: 128,
+                height: 128,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+    </script>
 </body>
 <footer>
   <p>&copy; Disclaimer:

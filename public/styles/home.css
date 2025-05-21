@@ -416,9 +416,9 @@ footer {
 } 
 * QR Code Container */
 .qr-container {
-    background-color: white;
+    background-color: rgba(223, 21, 213, 0.117);
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 6px rgba(237, 28, 28, 0.157);
     padding: 2rem;
     margin: 2rem auto;
     text-align: center;

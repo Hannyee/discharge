@@ -8,7 +8,12 @@
     <header>
         <h1>HOSPITAL DISCHARGE ADVICE</h1>
         <p>Access organised important medical advice and care instructions following your hospital visit</p>
-       <div class="date-badge">ENGLISH</div>
+       <div class="language-selector">
+            <select id="languageSelect" onchange="changeLanguage(this.value)">
+                <option value="en">English</option>
+                <option value="zh">中文</option>
+            </select>
+        </div>
     </header>
     <%- include('../partials/top-nav') %>
 
@@ -33,6 +38,7 @@
     </main>
     <script src="/js/filterAdvice.js"></script>
     <script src="/js/nav.js"></script>
+    <script src="/js/translations.js"></script>
     <script>
         // Generate QR code
         document.addEventListener('DOMContentLoaded', function() {

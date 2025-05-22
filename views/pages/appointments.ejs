@@ -9,6 +9,12 @@
         <h1>UPCOMING APPOINTMENTS</h1>
         <p>View your upcoming medical appointments</p>
         <div class="date-badge">ENGLISH</div>
+         <div class="language-selector">
+            <select id="languageSelect" onchange="changeLanguage(this.value)">
+                <option value="en">English</option>
+                <option value="zh">中文</option>
+            </select>
+        </div>
     </header>
      <%- include('../partials/top-nav') %>
     <main>
@@ -33,5 +39,6 @@
     </main>
     <%- include('../partials/navbar') %>
      <script src="/js/nav.js"></script>
+      <script src="/js/translations.js"></script>
 </body>
 </html> 

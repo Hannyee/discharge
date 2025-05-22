@@ -47,7 +47,7 @@ main {
 }
 
 .navigation-container {
-    background-color: rgba(244, 163, 14, 0.249);
+    background-color: rgba(244, 163, 14, 0.363);
     border-radius: 16px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     padding: 2rem;
@@ -408,7 +408,7 @@ footer {
 }
 
 .nav-tab {
-    color: white;
+    color: rgba(40, 38, 38, 0.576);
     text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 8px;
@@ -446,7 +446,7 @@ footer {
 }
 
 .healthhub-link:hover {
-    background-color: #f45235;
+    background-color: #f452354f;
     text-decoration: none;
 } 
 * QR Code Container */

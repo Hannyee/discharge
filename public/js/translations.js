@@ -2,14 +2,14 @@ const translations = {
     en: {
         title: "DISCHARGE ADVICE",
         subtitle: "Access organised important medical advice and care instructions following your hospital visit.",
-        appointments: "UPCOMING APPOINTMENTS",
-        appointmentsSubtitle: "View and manage your upcoming medical appointments.",
+        appointments: "MEDICATION INFORMATION",
+        appointmentsSubtitle: "Learn about your commonly prescribed medications.",
         contacts: "IMPORTANT CONTACTS",
         contactsSubtitle: "Quick access to important hospital contact information.",
         // Navigation items
         nav: {
             home: "Home",
-            appointments: "Appointments",
+            appointments: "Medication",
             contacts: "Contacts"
         },
         // Advice categories

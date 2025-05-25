@@ -9,7 +9,7 @@ const translations = {
         // Navigation items
         nav: {
             home: "Home",
-            appointments: "Medication",
+            appointments: "Medications",
             contacts: "Contacts"
         },
         // Advice categories
